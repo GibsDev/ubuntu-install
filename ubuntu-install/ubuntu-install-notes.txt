@@ -17,6 +17,11 @@ sudo dpkg -i <mount path>/pool/restricted/b/bcmwl/bcmwl*.deb
 
 Reboot to make the wifi options in setting appear.
 
+To connect using CLI:
+Make sure you have rebooted since install
+nmcli device wifi rescan
+nmcli device wifi list
+nmcli device wifi connect '<SSID>' password '<password>'
 
 
 INSTALLING GRAPHICS DRIVERS
