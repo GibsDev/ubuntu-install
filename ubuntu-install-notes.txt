@@ -1,0 +1,125 @@
+This file is a record of all of the things that I needed to do in order to properly configure Ubuntu to my satisfaction.
+
+
+
+I CAN'T SEE THE LOGIN SCREEN!
+
+The first thing to note is that the login manager (gdm3) does not actually appear after the install. It will start properly, but due to not being able to load graphics drivers, there will be a black screen with a cursor. You can still interact with this screen the same way that you would if it was being properly rendered. To login just type <Enter> <password for your account created during install> <Enter>. The desktop manager should then boot up.
+
+
+
+GETTING ON THE INTERNET
+
+Before you can do almost anything else, I needed to get wifi up and running, because I do not have a wired connection. This can be done using the live install USB/CD. MAke sure it is plugged in and mounted and install the proprietary broadcom drivers using the following commands:
+
+sudo dpkg -i <mount path>/pool/main/d/dkms/dkms*.deb
+sudo dpkg -i <mount path>/pool/restricted/b/bcmwl/bcmwl*.deb
+
+Reboot to make the wifi options in setting appear.
+
+
+
+INSTALLING GRAPHICS DRIVERS
+
+The simplest way to get nvidia drivers installed was to allow the system to update via the Software Updater application. Once that is complete (and the system has been rebooted) you may use that same Software Updater app to select the NVIDIA proprietary drivers under Additional Drivers. This will install the NVIDIA X Server Settings application and allow you to use your monitor connected to the graphics card.
+
+
+
+CONFIGURING AUDIO
+
+First thing to do is to install alsamixer (and a few other alsa utilities) in order to configure your sound card settings using the following command:
+
+sudo apt-get install alsa-tools
+
+Then launch the alsamixer interface by simply typing "alsamixer" into the terminal.
+
+First hit F6 and make sure the correct sound device is selected. Then play around with the settings to get audio working as you like. Keep in mind you will potentially need to make sure the correct devices are selected in the system Settings > Sound (more about that later). In this case in order to get my sound to work I needed to change the mode of Analog Out to Stereo Headphones, as it was Stereo Headphones FP by default.
+
+Make sure to also hit F4 to configure you microphone as well. In this case I needed to make sure the Front Mic volume was all the way up. Once again you will need the correct device selected in Settings > Sound in order to test the changes you are making in alsamixer.
+
+Once you are happy with your settings, you can exit and use the following command to save your configuration so that it will (hopefully) be applied on bootup:
+
+sudo alsactl store
+
+Now that the sound card settings are configured, we need pulseaudio (the system sound engine?) to select the correct sources on startup (and make sure they are not muted).
+
+In order to configure this we need to COPY the default configuration file from
+/etc/pulse/default.pa
+to
+~/.config/pulse/default.pa
+
+pulseaudio will look for ~/.config/pulse/default.pa and use those settings first. In this case We just wanted to make sure that the sound cards microphone input was selected (it kept selecting the webcam by deafult):
+
+--- default.pa ------------------------------------------------------
+... <- Top portion of file (not actually in the file)
+
+### Make some devices default
+#set-default-sink output
+set-default-source alsa_input.pci-0000_04_04.0.analog-stereo
+
+### Change the default volume
+set-source-volume alsa_input.pci-0000_04_04.0.analog-stereo 65536
+---------------------------------------------------------------------
+
+This tells pulseaudio to use the specified device by name. It can also be specified by index, but this is subject to change if hardware changes. Like for example if a webcam is pluggin in or not.
+
+The way to get the device name is to use the following command:
+
+pacmd list-sources
+
+If you select the device in Sound settings, then there should be an asterisk next to the index of the device you are looking for.
+* index: N
+	name: <THIS_IS_WHAT_YOU_WANT>
+
+Use that value for configuration within default.pa.
+
+In order to get the configuration you are looking for, it is best to use the pacmd command in order to test the changes you would like to make within default.pa. pacmd is a "live shell" command that allows you to enter pulseaudio commands in the same format as they appear in defaults.pa. So once you have a series of pacmd commands you would like to be run at startup, just remove the pacmd from the front and paste them into you default.pa file.
+
+As an example, if you were a masochist, and wanted to manually enter pulseaudio commands each startup to configure your default microphone device you could use the following commands:
+
+pacmd set-default-source alsa_input.pci-0000_04_04.0.analog-stereo
+pacmd set-source-volume alsa_input.pci-0000_04_04.0.analog-stereo 65536
+
+(Or you could change these settings using the GUI in Settings > Sound)
+
+Some notes about pulseaudio:
+- Sink is an audio output, Source is an audio input
+- pacmd probably stands for (p)ulse(a)udio(c)o(m)man(d)
+
+
+
+WHATS WITH THE SCREEN TEARING
+
+NVIDIA driven monitor fix:
+NVIDIA X Server Settings > X Server Display Configuration > (Select Display) > Advanced... > Force Composition Pipeline
+
+Created a manual xorg configuration file based off of the one provided by NVIDIA X Server Settings. Had to manually define two other screens and monitors for the intel ones
+
+Videos still have screen tearing on Nvidia monitors in Firefox. Type about:config in address bar and set layers.acceleration.force-enabled to true.
+
+TODO Was not able to get the screen tearing to stop on intel monitors. Come back to this.
+
+
+GET RID OF THE PURPLE
+
+Change the RGBA value for grub:
+sudo -H gedit /usr/share/plymouth/themes/default.grub
+Remove the "quiet splash" -> "" from:
+sudo gedit /etc/default/grub
+Update grub:
+sudo update-grub
+
+
+
+I NEED THREE MONITORS TO LOGIN
+
+Switched to lightdm because it prefers the primary graphics card monitor. Three monitors worked the first boot, but did not work after that?
+
+
+
+
+I CANT WATCH YOUTUBE VIDEOS
+
+Use the following to install something that allows h.264 encoded videos to play in firefox:
+sudo apt-get install ubuntu-restricted-extras
+

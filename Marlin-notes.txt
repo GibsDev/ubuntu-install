@@ -1,0 +1,71 @@
+Created new branch prusa-bear (forked from latest bugfix 2.0.x) for my printers source.
+
+Slowly chipping away at all necessary changes to make the configuration work.
+
+There was a bit of an issue with the Z axis not have enough power to move. I greased the lead screws and increased the current to 800 -> 1000 mA RMS in the firmware. The problem is both Z steppers are powered from a single TMC2130 driver. The driver is rated to handle 1200 mA RMS, but I don't know how having 2 steppers affects this. Technically they shouldn't need as much current as they have a much greater mechanical advantage in moving the Z axis compared to X and Y. Perhaps there is still too much mechanical resistance on the leadscrews? At this point it could only be an alignemtn issue which I'm not sure if it can be resolved. So for now lubrication and extra current will have to do.
+
+I have done a test run of calibrating the probe temperature offset, but I did not configure the probing point yet. It needs to avoid the magnets in the heated bed to get a more accurate calibration. The magnets have caused issues in the past with mesh bed leveling. That was corrected by only using 9 probe points that avoided the magnet locations.
+
+It also takes a long time for the bed to try and reach 110 C, and its not really needed for the printing that I do, so I will probably turn down the temp to to speed this lengthy calibration process up. For now I will set it to 80, because The max I currently use is 70 with PETG.
+
+I did not finish the test calibration run as it was taking too long. I am going to make the changes in the firmware, flash them, and make sure they are pushed to github. I will actually do some testing another day.
+
+TODO next time I check this:
+- Perform a full G76 calibration for probe and bed
+- Perform a G29 mesh calibration
+- Find Z probe offset and babystep
+- Print and profit? For good?
+
+Also just remembered that I did a completely custom hotend temperature calibnration table, but I have no idea where that calibration file went. It may have been in windows before I fresh installed or on the external drive.
+
+
+Results from probe calibration with bed @ 100 and no mesh stored:
+Probe temp: 30.00C; Offset: 0.00 um
+Probe temp: 35.00C; Offset: 77.00 um
+Probe temp: 40.00C; Offset: 135.00 um
+Probe temp: 45.00C; Offset: 135.00 um
+Probe temp: 50.00C; Offset: 135.00 um
+Probe temp: 55.00C; Offset: 156.00 um
+Probe temp: 60.00C; Offset: 189.00 um
+Probe temp: 65.00C; Offset: 223.00 um
+Probe temp: 70.00C; Offset: 256.00 um
+Probe temp: 75.00C; Offset: 289.00 um
+Probe temp: 80.00C; Offset: 323.00 um
+Bed temp: 60.00C; Offset: 0.00 um
+Bed temp: 65.00C; Offset: 0.00 um
+Bed temp: 70.00C; Offset: 0.00 um
+Bed temp: 75.00C; Offset: 0.00 um
+Bed temp: 80.00C; Offset: 0.00 um
+Bed temp: 85.00C; Offset: 0.00 um
+Bed temp: 90.00C; Offset: 0.00 um
+Bed temp: 95.00C; Offset: 0.00 um
+Bed temp: 100.00C; Offset: 0.00 um
+Bed temp: 105.00C; Offset: 0.00 um
+Bed temp: 110.00C; Offset: 0.00 um
+
+Bed probing @ 70 degrees:
+Bed Topography Report:
+    ( 37,200)      (248,200)
+        0       1       2
+ 2 | -0.137  -0.110  -0.162
+   |
+ 1 | +0.135  +0.235  -0.063
+   |
+ 0 |[+0.050] +0.090  -0.110
+        0       1       2
+    ( 37, 14)      (248, 14)
+
+
+
+Bed Topography Report:
+    ( 37,200)      (248,200)
+        0       1       2
+ 2 | -0.137  -0.110  -0.162
+   |
+ 1 | +0.135 [+0.023] -0.063
+   |
+ 0 | +0.050  +0.090  -0.110
+        0       1       2
+    ( 37, 14)      (248, 14)
+
+

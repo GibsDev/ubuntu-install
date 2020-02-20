@@ -1,0 +1,75 @@
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libnvidia-cfg1-418 libnvidia-common-418 libnvidia-decode-418
+  libnvidia-decode-418:i386 libnvidia-encode-418 libnvidia-encode-418:i386
+  libnvidia-fbc1-418 libnvidia-fbc1-418:i386 libnvidia-gl-418
+  libnvidia-gl-418:i386 libnvidia-ifr1-418 libnvidia-ifr1-418:i386 libxnvctrl0
+  nvidia-compute-utils-418 nvidia-dkms-418 nvidia-kernel-common-418
+  nvidia-kernel-source-418 nvidia-prime nvidia-settings nvidia-utils-418
+  pkg-config screen-resolution-extra xserver-xorg-video-nvidia-418
+The following NEW packages will be installed:
+  libnvidia-cfg1-418 libnvidia-common-418 libnvidia-decode-418
+  libnvidia-decode-418:i386 libnvidia-encode-418 libnvidia-encode-418:i386
+  libnvidia-fbc1-418 libnvidia-fbc1-418:i386 libnvidia-gl-418
+  libnvidia-gl-418:i386 libnvidia-ifr1-418 libnvidia-ifr1-418:i386 libxnvctrl0
+  nvidia-compute-utils-418 nvidia-dkms-418 nvidia-driver-418
+  nvidia-kernel-common-418 nvidia-kernel-source-418 nvidia-prime
+  nvidia-settings nvidia-utils-418 pkg-config screen-resolution-extra
+  xserver-xorg-video-nvidia-418
+0 upgraded, 24 newly installed, 0 to remove and 0 not upgraded.
+Need to get 66.3 MB of archives.
+After this operation, 289 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Err:1 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 libnvidia-cfg1-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Ign:2 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 libnvidia-common-418 all 418.56-0ubuntu1
+Err:3 http://us.archive.ubuntu.com/ubuntu disco/restricted i386 libnvidia-decode-418 i386 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:4 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 libnvidia-decode-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:5 http://us.archive.ubuntu.com/ubuntu disco/restricted i386 libnvidia-encode-418 i386 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:6 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 libnvidia-encode-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:7 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 libnvidia-fbc1-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:8 http://us.archive.ubuntu.com/ubuntu disco/restricted i386 libnvidia-fbc1-418 i386 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:9 http://us.archive.ubuntu.com/ubuntu disco/restricted i386 libnvidia-gl-418 i386 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:10 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 libnvidia-gl-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:11 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 libnvidia-ifr1-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:12 http://us.archive.ubuntu.com/ubuntu disco/restricted i386 libnvidia-ifr1-418 i386 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:13 http://us.archive.ubuntu.com/ubuntu disco/main amd64 libxnvctrl0 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:14 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 nvidia-compute-utils-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:15 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 nvidia-kernel-source-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:16 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 nvidia-kernel-common-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:17 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 nvidia-dkms-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:18 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 nvidia-utils-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:19 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 xserver-xorg-video-nvidia-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:20 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 nvidia-driver-418 amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Ign:21 http://us.archive.ubuntu.com/ubuntu disco/main amd64 nvidia-prime all 0.8.10
+Err:22 http://us.archive.ubuntu.com/ubuntu disco/main amd64 pkg-config amd64 0.29.1-0ubuntu2
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Ign:23 http://us.archive.ubuntu.com/ubuntu disco/main amd64 screen-resolution-extra all 0.17.4
+Err:24 http://us.archive.ubuntu.com/ubuntu disco/main amd64 nvidia-settings amd64 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:2 http://us.archive.ubuntu.com/ubuntu disco/restricted amd64 libnvidia-common-418 all 418.56-0ubuntu1
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:21 http://us.archive.ubuntu.com/ubuntu disco/main amd64 nvidia-prime all 0.8.10
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Err:23 http://us.archive.ubuntu.com/ubuntu disco/main amd64 screen-resolution-extra all 0.17.4
+  Temporary failure resolving 'us.archive.ubuntu.com'
+Unable to correct missing packages.
